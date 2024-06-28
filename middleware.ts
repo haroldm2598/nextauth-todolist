@@ -1,27 +1,48 @@
-// if you want to authenticate and redirect if not logged in
-// import { getToken } from 'next-auth/jwt';
-// import { withAuth } from 'next-auth/middleware';
-// import { NextResponse } from 'next/server';
-export { default } from 'next-auth/middleware';
+// // if you want to authenticate and redirect if not logged in
+// https://stackoverflow.com/questions/76175812/prevent-authenticated-users-to-access-custom-sign-in-page-with-next-auth-middlew
+import { getToken } from 'next-auth/jwt';
+import { withAuth } from 'next-auth/middleware';
+import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
 
-// export default withAuth(async function middleware(req) {
-// 	const token = await getToken({ req });
-// 	// if token exists, !!token will be true
-// 	const isAuthenticated = !!token;
+export default async function middleware(
+	req: NextRequest,
+	event: NextFetchEvent
+) {
+	const token = await getToken({ req });
+	const isAuthenticated = !!token;
 
-// 	// first, check if the current path is login page
-// 	if (
-// 		req.nextUrl.pathname.startsWith('/sign-in') ||
-// 		req.nextUrl.pathname.startsWith('/sign-up')
-// 	) {
-// 		// I am in "login" page now  I check if the user is authenticated or not
-// 		if (isAuthenticated) {
-// 			// If I get here it means user is on "login" page and it is authenticated. then redirect it to whatever url
-// 			return NextResponse.redirect(new URL('/admin', req.url));
-// 		}
-// 	}
-// });
+	// error finding sira naman yung button ng sign-up nag redirect sa sign in lagi
+	if (req.nextUrl.pathname.startsWith('/sign-in') && isAuthenticated) {
+		return NextResponse.redirect(new URL('/admin', req.url));
+	}
+
+	if (req.nextUrl.pathname.startsWith('/sign-up') && isAuthenticated) {
+		return NextResponse.redirect(new URL('/admin', req.url));
+	}
+
+	if (
+		req.nextUrl.pathname.startsWith('/') ||
+		req.nextUrl.pathname.startsWith('/sign-in') ||
+		req.nextUrl.pathname.startsWith('/sign-up')
+	) {
+		return fetch(req);
+	}
+
+	const authMiddleware = await withAuth({
+		pages: {
+			signIn: `/sign-in`
+		}
+	});
+
+	// @ts-expect-error
+	return authMiddleware(req, event);
+}
 
 export const config = {
-	matcher: ['/admin', '/app/:path']
+	matcher: ['/((?!api|_next/static|_next/image|.*\\.png$).*)']
 };
+
+// export { default } from 'next-auth/middleware';
+// export const config = {
+// 	matcher: ['/admin', '/app/:path']
+// };
