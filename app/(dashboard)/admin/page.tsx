@@ -8,6 +8,7 @@ export default async function DashboardPage() {
 	const session = await getServerSession(options);
 
 	if (session?.user) {
+		console.log(session?.user);
 		return <h2>welcome to back Mr.{session?.user.username}</h2>;
 	}
 
