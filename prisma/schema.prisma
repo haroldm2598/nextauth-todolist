@@ -20,17 +20,15 @@ model User {
   username String     @unique
   password String
   todolist Todolist[]
-  createAt DateTime   @default(now())
-  updateAt DateTime   @updatedAt
 }
 
 model Todolist {
   id          String   @id @default(uuid())
-  todolist    User     @relation(fields: [todolistId], references: [id])
-  todolistId  String
   title       String
   contentList List[]
   slug        String   @unique
+  user        User     @relation(fields: [userId], references: [id])
+  userId      String
   updatedAt   DateTime @updatedAt
   createdAt   DateTime @default(now()) @map("created_at")
 
@@ -38,8 +36,8 @@ model Todolist {
 }
 
 model List {
-  id      String   @id @default(uuid())
-  list    String
-  lists   Todolist @relation(fields: [listsId], references: [id], onDelete: Cascade)
-  listsId String
+  id         String   @id @default(uuid())
+  list       String
+  todolist   Todolist @relation(fields: [todolistId], references: [id], onDelete: Cascade)
+  todolistId String
 }

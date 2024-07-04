@@ -8,6 +8,7 @@ import UserAccountNav from './UserAccountNav';
 
 // lib
 import { options } from '@/app/api/auth/[...nextauth]/options';
+import BtnCreateTodolist from './modal/BtnCreateTodolist';
 
 export default async function Navbar() {
 	const session = await getServerSession(options);
@@ -20,7 +21,10 @@ export default async function Navbar() {
 				</Link>
 
 				{session?.user ? (
-					<UserAccountNav />
+					<div className='space-x-2'>
+						<BtnCreateTodolist name='create' />
+						<UserAccountNav />
+					</div>
 				) : (
 					<Link className={buttonVariants()} href='/sign-in'>
 						Sign in
