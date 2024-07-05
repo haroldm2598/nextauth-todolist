@@ -24,17 +24,15 @@ export default async function DashboardPage() {
 	return (
 		<main>
 			<div>
-				<h2>Client Session</h2>
-				<User />
+				<h2 className='font-semibold'>Server Session</h2>
+				{users?.todolist.map((item) => (
+					<div key={item.id}>
+						<h1>{item.title}</h1>
+					</div>
+				))}
 			</div>
 
-			<div>
-				<h2>Server Session</h2>
-				{JSON.stringify(session)}
-				<h2>{users?.username}</h2>
-			</div>
-
-			<CreateTodolist />
+			<CreateTodolist userId={users?.id as string} />
 		</main>
 	);
 }

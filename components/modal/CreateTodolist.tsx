@@ -3,6 +3,8 @@
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
 
+import { createTodolist } from '@/action/actionTodolist';
+
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 
@@ -17,21 +19,32 @@ import {
 } from '../ui/form';
 import { Input } from '../ui/input';
 
+interface CreateTodolistProps {
+	userId: string;
+}
+
 const FormSchema = z.object({
-	title: z.string().min(1, 'Title is required')
+	title: z.string().min(1, 'Title is required'),
+	userId: z.string()
 });
 
-export default function CreateTodolist() {
+export default function CreateTodolist({ userId }: CreateTodolistProps) {
 	const ref = useRef<HTMLFormElement>(null);
 	const form = useForm<z.infer<typeof FormSchema>>({
 		resolver: zodResolver(FormSchema),
 		defaultValues: {
+			userId: userId,
 			title: ''
 		}
 	});
 
-	const onSubmit = () => {
-		console.log('testing');
+	const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+		const formData = new FormData();
+		formData.append('userId', values.userId);
+		formData.append('title', values.title);
+
+		await createTodolist(formData);
+		console.log('Created new todolist');
 	};
 
 	return (
@@ -39,6 +52,18 @@ export default function CreateTodolist() {
 			<div className='modal-box max-w-[300px]'>
 				<Form {...form}>
 					<form onSubmit={form.handleSubmit(onSubmit)}>
+						<FormField
+							control={form.control}
+							name='userId'
+							render={({ field }) => (
+								<FormItem>
+									<FormControl>
+										<Input type='hidden' {...field} />
+									</FormControl>
+								</FormItem>
+							)}
+						/>
+
 						<FormField
 							control={form.control}
 							name='title'
