@@ -1,15 +1,17 @@
 'use client';
 
 import { Button } from '../ui/button';
+import { SquarePen } from 'lucide-react';
 
-interface BtnProps {
-	name: string;
-}
-export default function BtnCreateTodolist({ name }: BtnProps) {
+export default function BtnCreateTodolist() {
 	const showModalCreate = () => {
 		const modalCreate = document.getElementById('modalCreateTodolist');
 		if (modalCreate) return (modalCreate as HTMLDialogElement).showModal();
 	};
 
-	return <Button onClick={showModalCreate}>{name}</Button>;
+	return (
+		<Button size='sm' onClick={showModalCreate}>
+			<SquarePen />
+		</Button>
+	);
 }

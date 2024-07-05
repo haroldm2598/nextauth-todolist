@@ -19,5 +19,9 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 	// 	router.push('/');
 	// 	return null;
 	// }
-	return <div className='bg-slate-200 p-10 rounded-lg'>{children}</div>;
+	return (
+		<div className='flex flex-col justify-center items-center bg-slate-200 p-10 rounded-lg'>
+			{children}
+		</div>
+	);
 }

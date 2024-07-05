@@ -31,3 +31,8 @@ export async function createTodolist(formData: FormData) {
 		console.error('validation error', err);
 	}
 }
+
+export async function deleteTodolist(id: string) {
+	await prisma.todolist.delete({ where: { id } });
+	revalidatePath('/admin');
+}

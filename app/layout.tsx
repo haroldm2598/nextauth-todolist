@@ -27,6 +27,12 @@ export default function RootLayout({
 					</main>
 					<Toaster />
 				</Provider>
+
+				{/* <Provider>
+					<Navbar />
+					<main className='h-screen py-20 px-4'>{children}</main>
+					<Toaster />
+				</Provider> */}
 			</body>
 		</html>
 	);

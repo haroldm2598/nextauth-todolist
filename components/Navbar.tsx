@@ -21,8 +21,8 @@ export default async function Navbar() {
 				</Link>
 
 				{session?.user ? (
-					<div className='space-x-2'>
-						<BtnCreateTodolist name='create' />
+					<div className='flex items-center space-x-2'>
+						<BtnCreateTodolist />
 						<UserAccountNav />
 					</div>
 				) : (
