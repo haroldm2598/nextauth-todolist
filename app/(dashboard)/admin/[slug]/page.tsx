@@ -20,31 +20,32 @@ export default async function TodolistPage({ params }: TodolistProps) {
 	});
 
 	return (
-		<main className='min-h-screen pt-20'>
-			<section>
-				{/* Content */}
-				<div className='w-96 md:min-w-[32rem] p-4 min-h-96 border border-gray-300 rounded-lg flex flex-col justify-between dark:bg-slate-100 dark:text-slate-600 shadow-lg dark:shadow-gray-700'>
-					<div>
-						<h1>{todolistData?.title}</h1>
+		<main className=' mx-auto max-w-sm'>
+			<div className='bg-slate-200 w-96 md:min-w-[32rem] p-4 min-h-96 border border-gray-300 rounded-lg flex flex-col justify-between dark:bg-slate-100 dark:text-slate-600 shadow-lg dark:shadow-gray-700'>
+				<section>
+					<h1 className='font-semibold text-xl uppercase'>
+						{todolistData?.title}
+					</h1>
+
+					<div className='mt-3 space-y-1'>
 						{todolistData?.contentList.map((item) => {
 							return (
 								<div
 									key={item.id}
 									className='flex justify-between items-center'
 								>
-									<p>{item.list}</p>
+									<p className='w-72 md:w-80 leading-5'>{item.list}</p>
 									<BtnDeleteList id={item.id as string} />
 								</div>
 							);
 						})}
 					</div>
-					{/* Content Button */}
-					<div>
-						{/* create tast button */}
-						<BtnCreate />
-					</div>
-				</div>
-			</section>
+				</section>
+
+				<section>
+					<BtnCreate />
+				</section>
+			</div>
 
 			<ModalCreateList listId={todolistData?.id as string} />
 		</main>

@@ -3,7 +3,7 @@ import { Maximize } from 'lucide-react';
 
 export default function BtnExpand() {
 	return (
-		<Button>
+		<Button size='sm'>
 			<Maximize size='18' />
 		</Button>
 	);

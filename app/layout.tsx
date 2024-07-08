@@ -22,17 +22,10 @@ export default function RootLayout({
 			<body className={inter.className}>
 				<Provider>
 					<Navbar />
-					<main className='h-screen flex flex-col justify-center items-center'>
-						{children}
-					</main>
+					{/* <main className='h-screen flex flex-col justify-center items-center'> */}
+					<main className='h-screen'>{children}</main>
 					<Toaster />
 				</Provider>
-
-				{/* <Provider>
-					<Navbar />
-					<main className='h-screen py-20 px-4'>{children}</main>
-					<Toaster />
-				</Provider> */}
 			</body>
 		</html>
 	);

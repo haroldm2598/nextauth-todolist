@@ -12,8 +12,8 @@ export default function BtnDeleteList({ id }: BtnDeleteListProps) {
 	};
 
 	return (
-		<Button onClick={handleDelete}>
-			<Trash2 size='12' />
+		<Button size='icon' onClick={handleDelete}>
+			<Trash2 size='18' />
 		</Button>
 	);
 }

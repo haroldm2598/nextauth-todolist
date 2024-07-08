@@ -1,12 +1,9 @@
+import { ChildProps } from '@/lib/types/definition';
 import { useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { ReactNode } from 'react';
 
-interface AuthLayoutProps {
-	children: ReactNode;
-}
-
-export default function AuthLayout({ children }: AuthLayoutProps) {
+export default function AuthLayout({ children }: ChildProps) {
 	// const { data: session, status } = useSession();
 	// const router = useRouter();
 
@@ -20,8 +17,10 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
 	// 	return null;
 	// }
 	return (
-		<div className='flex flex-col justify-center items-center bg-slate-200 p-10 rounded-lg'>
-			{children}
-		</div>
+		<main className='min-h-screen flex justify-center items-center'>
+			<div className='w-72 md:w-96 flex flex-col justify-center items-center bg-slate-200 p-4 md:p-10 rounded-lg'>
+				{children}
+			</div>
+		</main>
 	);
 }

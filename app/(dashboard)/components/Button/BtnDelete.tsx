@@ -21,7 +21,7 @@ export default function BtnDelete({ userId }: userIdProps) {
 		}
 	};
 	return (
-		<Button onClick={handleDelete}>
+		<Button size='sm' onClick={handleDelete}>
 			<Trash2 size='18' />
 		</Button>
 	);

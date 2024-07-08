@@ -25,9 +25,6 @@ export default async function DashboardPage() {
 				}
 			}
 		}
-		// include: {
-		// 	todolist: true,
-		// }
 	});
 
 	return (
@@ -36,21 +33,25 @@ export default async function DashboardPage() {
 				{users?.todolist.map((item) => (
 					<div
 						key={item.id}
-						className='flex flex-col justify-between p-4 w-72 md:w-96 max-w-sm min-h-64 dark:bg-main300 dark:text-main100 border border-gray-300 rounded-lg shadow-lg dark:shadow-gray-700'
+						className='flex flex-col justify-between p-4 mx-auto md:mx-0 w-72 md:w-96 max-w-sm min-h-64 dark:bg-main300 dark:text-main100 border border-gray-300 rounded-lg shadow-lg dark:shadow-gray-700'
 					>
-						<h1 className='font-semibold'>{item.title}</h1>
-						{item.contentList.map((lists) => (
-							<div key={lists.id}>
-								<p>{lists.list}</p>
+						<section>
+							<h1 className='font-semibold text-lg uppercase'>{item.title}</h1>
+							<div className='mt-3'>
+								{item.contentList.map((lists) => (
+									<p key={lists.id} className='opacity-90'>
+										{lists.list}
+									</p>
+								))}
 							</div>
-						))}
+						</section>
 
-						<div className='max-w-sm text-right space-x-2'>
+						<section className='max-w-sm text-right space-x-2'>
 							<Link href={`/admin/${item.slug}`}>
 								<BtnExpand />
 							</Link>
 							<BtnDelete userId={item.id as string} />
-						</div>
+						</section>
 					</div>
 				))}
 			</div>
