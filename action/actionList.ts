@@ -1,23 +1,30 @@
-// 'use server';
+'use server';
 
-// import { z } from 'zod';
-// import prisma from '@/lib/db';
-// import { revalidatePath } from 'next/cache';
+import prisma from '@/lib/db';
+import { revalidatePath } from 'next/cache';
+import { z } from 'zod';
 
-// const CreateListSchema = z.object({
-// 	list: z.string().min(1, { message: 'List must not be empty' })
-// });
+const CreateListSchema = z.object({
+	todolistId: z.string(),
+	list: z.string().min(1, { message: 'List must not be empty' })
+});
 
-// export async function createList(formData: FormData) {
-// 	const { list } = CreateListSchema.parse({
-// 		list: formData.get('list') as string
-// 	});
+export async function createList(formData: FormData) {
+	try {
+		const { todolistId, list } = CreateListSchema.parse({
+			todolistId: formData.get('listId') as string,
+			list: formData.get('list') as string
+		});
 
-// 	await prisma.list.create({
-// 		data: {
-// 			list
-// 		}
-// 	});
+		await prisma.list.create({
+			data: {
+				todolistId,
+				list
+			}
+		});
+	} catch (err) {
+		console.log('Error create list', err);
+	}
 
-// 	revalidatePath('/');
-// }
+	revalidatePath('/admin');
+}

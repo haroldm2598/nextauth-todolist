@@ -16,9 +16,15 @@ export default async function Navbar() {
 	return (
 		<header className='bg-zinc-100 py-2 border-b border-zinc-200 fixed w-full z-10 top-0'>
 			<nav className='container flex items-center justify-between'>
-				<Link href='/'>
-					<House />
-				</Link>
+				{session?.user ? (
+					<Link href='/admin'>
+						<House />
+					</Link>
+				) : (
+					<Link href='/'>
+						<House />
+					</Link>
+				)}
 
 				{session?.user ? (
 					<div className='flex items-center space-x-2'>

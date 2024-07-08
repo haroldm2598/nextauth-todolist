@@ -1,11 +1,11 @@
+import Link from 'next/link';
 import { getServerSession } from 'next-auth';
 
 import { options } from '@/app/api/auth/[...nextauth]/options';
-import User from '@/components/User';
 import prisma from '@/lib/db';
 import CreateTodolist from '@/components/modal/CreateTodolist';
-import BtnDelete from '../components/BtnDelete';
-import BtnExpand from '../components/BtnExpand';
+import BtnDelete from '../components/Button/BtnDelete';
+import BtnExpand from '../components/Button/BtnExpand';
 
 export default async function DashboardPage() {
 	// IF ONLY YOU WANT TO GETSERVERSESSION
@@ -19,8 +19,15 @@ export default async function DashboardPage() {
 			email: session?.user.email as string
 		},
 		include: {
-			todolist: true
+			todolist: {
+				include: {
+					contentList: true
+				}
+			}
 		}
+		// include: {
+		// 	todolist: true,
+		// }
 	});
 
 	return (
@@ -32,9 +39,16 @@ export default async function DashboardPage() {
 						className='flex flex-col justify-between p-4 w-72 md:w-96 max-w-sm min-h-64 dark:bg-main300 dark:text-main100 border border-gray-300 rounded-lg shadow-lg dark:shadow-gray-700'
 					>
 						<h1 className='font-semibold'>{item.title}</h1>
+						{item.contentList.map((lists) => (
+							<div key={lists.id}>
+								<p>{lists.list}</p>
+							</div>
+						))}
 
 						<div className='max-w-sm text-right space-x-2'>
-							<BtnExpand />
+							<Link href={`/admin/${item.slug}`}>
+								<BtnExpand />
+							</Link>
 							<BtnDelete userId={item.id as string} />
 						</div>
 					</div>
