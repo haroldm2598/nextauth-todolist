@@ -1,6 +1,7 @@
 import prisma from '@/lib/db';
 import BtnCreate from '../../components/Button/BtnCreate';
 import ModalCreateList from '../../components/Modal/ModalCreateList';
+import BtnDeleteList from '../../components/Button/BtnDeleteList';
 
 interface TodolistProps {
 	params: {
@@ -27,8 +28,12 @@ export default async function TodolistPage({ params }: TodolistProps) {
 						<h1>{todolistData?.title}</h1>
 						{todolistData?.contentList.map((item) => {
 							return (
-								<div key={item.id}>
+								<div
+									key={item.id}
+									className='flex justify-between items-center'
+								>
 									<p>{item.list}</p>
+									<BtnDeleteList id={item.id as string} />
 								</div>
 							);
 						})}

@@ -28,3 +28,13 @@ export async function createList(formData: FormData) {
 
 	revalidatePath('/admin');
 }
+
+export async function deleteList(id: string) {
+	await prisma.list.delete({
+		where: {
+			id
+		}
+	});
+
+	revalidatePath('/admin');
+}
