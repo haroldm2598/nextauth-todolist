@@ -18,11 +18,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang='en'>
+		<html lang='en' suppressHydrationWarning>
 			<body className={inter.className}>
 				<Provider>
 					<Navbar />
-					{/* <main className='h-screen flex flex-col justify-center items-center'> */}
 					<main className='h-screen'>{children}</main>
 					<Toaster />
 				</Provider>

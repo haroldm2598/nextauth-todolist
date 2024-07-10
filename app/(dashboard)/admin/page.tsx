@@ -27,8 +27,6 @@ export default async function DashboardPage() {
 		}
 	});
 
-	console.log(users?.todolist[1].contentList.length);
-
 	return (
 		<main>
 			<div className='flex flex-col md:flex-row flex-wrap justify-center gap-6'>
@@ -40,15 +38,8 @@ export default async function DashboardPage() {
 						<section>
 							<h1 className='font-semibold text-lg uppercase'>{item.title}</h1>
 							<div className='mt-3 space-y-2'>
-								{/* {item.contentList.map((lists) => (
-									<p key={lists.id} className='opacity-90 leading-4'>
-										{lists.list}
-									</p>
-								))} */}
-								{/* may mali rine na double yung nasa paragraph */}
 								{item?.contentList.length > 4
-									? // if greater than 4 yung content so ipreview niya na 4 lang
-									  item?.contentList.slice(0, 4).map((lists) => {
+									? item?.contentList.slice(0, 4).map((lists) => {
 											const truncateStr = lists?.list;
 											const maxLength = 80;
 
@@ -60,8 +51,7 @@ export default async function DashboardPage() {
 												</p>
 											);
 									  })
-									: // else less than 4 lang yung content edi preview lang niya kung ano natitira
-									  item?.contentList.map((lists) => {
+									: item?.contentList.map((lists) => {
 											const truncateStr = lists?.list;
 											const maxLength = 80;
 

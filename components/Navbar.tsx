@@ -9,6 +9,7 @@ import UserAccountNav from './UserAccountNav';
 // lib
 import { options } from '@/app/api/auth/[...nextauth]/options';
 import BtnCreateTodolist from './modal/BtnCreateTodolist';
+import ThemeSwitch from './ThemeSwitch';
 
 export default async function Navbar() {
 	const session = await getServerSession(options);
@@ -18,23 +19,27 @@ export default async function Navbar() {
 			<nav className='container flex items-center justify-between'>
 				{session?.user ? (
 					<Link href='/admin'>
-						<House />
+						<House className='text-black' />
 					</Link>
 				) : (
 					<Link href='/'>
-						<House />
+						<House className='text-black' />
 					</Link>
 				)}
 
 				{session?.user ? (
 					<div className='flex items-center space-x-2'>
 						<BtnCreateTodolist />
+						<ThemeSwitch />
 						<UserAccountNav />
 					</div>
 				) : (
-					<Link className={buttonVariants()} href='/sign-in'>
-						Sign in
-					</Link>
+					<>
+						<ThemeSwitch />
+						<Link className={buttonVariants()} href='/sign-in'>
+							Sign in
+						</Link>
+					</>
 				)}
 			</nav>
 		</header>
