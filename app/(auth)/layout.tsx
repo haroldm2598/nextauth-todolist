@@ -18,7 +18,7 @@ export default function AuthLayout({ children }: ChildProps) {
 	// }
 	return (
 		<main className='min-h-screen flex justify-center items-center'>
-			<div className='w-72 md:w-96 flex flex-col justify-center items-center bg-slate-200 p-4 md:p-10 rounded-lg'>
+			<div className='w-72 md:w-96 flex flex-col justify-center items-center bg-slate-200 dark:bg-dark100 p-4 md:p-10 rounded-lg'>
 				{children}
 			</div>
 		</main>

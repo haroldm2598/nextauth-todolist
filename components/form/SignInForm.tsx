@@ -66,9 +66,10 @@ export function SignInForm() {
 						name='email'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Email</FormLabel>
+								<FormLabel className='dark:text-darkText100'>Email</FormLabel>
 								<FormControl>
 									<Input
+										className='dark:bg-dark200 dark:focus:ring dark:focus:ring-blue-300  dark:shadow-md dark:shadow-zinc-900'
 										placeholder='testing@example.com'
 										type='email'
 										{...field}
@@ -84,9 +85,12 @@ export function SignInForm() {
 						name='password'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Pasword</FormLabel>
+								<FormLabel className='dark:text-darkText100 dark:focus:ring dark:focus:ring-blue-300'>
+									Pasword
+								</FormLabel>
 								<FormControl>
 									<Input
+										className='dark:bg-dark200 dark:focus:ring dark:focus:ring-blue-300 dark:shadow-md dark:shadow-zinc-900'
 										placeholder='Enter a password'
 										type='password'
 										{...field}
@@ -97,7 +101,10 @@ export function SignInForm() {
 						)}
 					/>
 				</div>
-				<Button className='w-full mt-6' type='submit'>
+				<Button
+					className='w-full mt-6 dark:bg-black dark:text-white'
+					type='submit'
+				>
 					Sign In
 				</Button>
 
@@ -105,7 +112,7 @@ export function SignInForm() {
 					or
 				</div>
 
-				<p className='text-center text-sm text-gray-600 mt-2'>
+				<p className='mt-2 text-center text-sm text-gray-600 dark:text-darkText100'>
 					If you don&apos;t have an account please &nbsp;
 					<Link className='text-blue-500 hover:underline' href='/sign-up'>
 						Sign up

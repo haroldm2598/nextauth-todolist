@@ -78,9 +78,12 @@ export function SignUpForm() {
 						name='username'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Username</FormLabel>
+								<FormLabel className='dark:text-darkText100'>
+									Username
+								</FormLabel>
 								<FormControl>
 									<Input
+										className='dark:bg-dark200 dark:focus:ring dark:focus:ring-blue-300 dark:shadow-md dark:shadow-zinc-900'
 										placeholder='Enter your username'
 										type='text'
 										{...field}
@@ -96,9 +99,10 @@ export function SignUpForm() {
 						name='email'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Email</FormLabel>
+								<FormLabel className='dark:text-darkText100'>Email</FormLabel>
 								<FormControl>
 									<Input
+										className='dark:bg-dark200 dark:focus:ring dark:focus:ring-blue-300  dark:shadow-md dark:shadow-zinc-900'
 										placeholder='mail@example.com'
 										type='email'
 										{...field}
@@ -114,9 +118,10 @@ export function SignUpForm() {
 						name='password'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Pasword</FormLabel>
+								<FormLabel className='dark:text-darkText100'>Pasword</FormLabel>
 								<FormControl>
 									<Input
+										className='dark:bg-dark200 dark:focus:ring dark:focus:ring-blue-300  dark:shadow-md dark:shadow-zinc-900'
 										placeholder='Enter a password'
 										type='password'
 										{...field}
@@ -132,9 +137,12 @@ export function SignUpForm() {
 						name='confirmPassword'
 						render={({ field }) => (
 							<FormItem>
-								<FormLabel>Pasword</FormLabel>
+								<FormLabel className='dark:text-darkText100'>
+									Confirm Pasword
+								</FormLabel>
 								<FormControl>
 									<Input
+										className='dark:bg-dark200 dark:focus:ring dark:focus:ring-blue-300  dark:shadow-md dark:shadow-zinc-900'
 										placeholder='Re enter your password'
 										type='password'
 										{...field}
@@ -145,7 +153,10 @@ export function SignUpForm() {
 						)}
 					/>
 				</div>
-				<Button className='w-full mt-6' type='submit'>
+				<Button
+					className='w-full mt-6 dark:bg-black dark:text-white dark:shadow-md dark:shadow-zinc-900'
+					type='submit'
+				>
 					Sign Up
 				</Button>
 
@@ -153,7 +164,7 @@ export function SignUpForm() {
 					or
 				</div>
 
-				<p className='text-center text-sm text-gray-600 mt-2'>
+				<p className='mt-2 text-center text-sm text-gray-600 dark:text-darkText100 '>
 					If you already have an account &nbsp;
 					<Link className='text-blue-500 hover:underline' href='/sign-in'>
 						Sign in

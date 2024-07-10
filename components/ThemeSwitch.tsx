@@ -27,7 +27,7 @@ export default function ThemeSwitch() {
 	}
 
 	if (resolvedTheme === 'dark') {
-		return <Sun className='text-black' onClick={() => setTheme('light')} />;
+		return <Sun onClick={() => setTheme('light')} />;
 	}
 
 	if (resolvedTheme === 'light') {

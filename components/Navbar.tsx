@@ -15,15 +15,15 @@ export default async function Navbar() {
 	const session = await getServerSession(options);
 
 	return (
-		<header className='bg-zinc-100 py-2 border-b border-zinc-200 fixed w-full z-10 top-0'>
+		<header className='py-2 bg-zinc-100 dark:bg-slate-900 border-b border-zinc-200 dark:border-slate-950 fixed w-full z-10 top-0'>
 			<nav className='container flex items-center justify-between'>
 				{session?.user ? (
 					<Link href='/admin'>
-						<House className='text-black' />
+						<House />
 					</Link>
 				) : (
 					<Link href='/'>
-						<House className='text-black' />
+						<House />
 					</Link>
 				)}
 
@@ -34,12 +34,15 @@ export default async function Navbar() {
 						<UserAccountNav />
 					</div>
 				) : (
-					<>
+					<div className='flex items-center space-x-2'>
 						<ThemeSwitch />
-						<Link className={buttonVariants()} href='/sign-in'>
+						<Link
+							className={`${buttonVariants()} dark:bg-dark200 dark:text-white`}
+							href='/sign-in'
+						>
 							Sign in
 						</Link>
-					</>
+					</div>
 				)}
 			</nav>
 		</header>
