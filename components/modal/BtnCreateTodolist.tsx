@@ -10,7 +10,11 @@ export default function BtnCreateTodolist() {
 	};
 
 	return (
-		<Button size='sm' onClick={showModalCreate}>
+		<Button
+			size='sm'
+			className='dark:bg-dark200 dark:text-white'
+			onClick={showModalCreate}
+		>
 			<SquarePen />
 		</Button>
 	);

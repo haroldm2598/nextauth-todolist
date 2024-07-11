@@ -12,7 +12,11 @@ export default function BtnDeleteList({ id }: BtnDeleteListProps) {
 	};
 
 	return (
-		<Button size='icon' onClick={handleDelete}>
+		<Button
+			size='icon'
+			className='dark:bg-black dark:text-white'
+			onClick={handleDelete}
+		>
 			<Trash2 size='18' />
 		</Button>
 	);

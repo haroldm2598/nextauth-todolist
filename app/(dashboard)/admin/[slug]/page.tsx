@@ -20,10 +20,10 @@ export default async function TodolistPage({ params }: TodolistProps) {
 	});
 
 	return (
-		<main>
-			<section className='mx-auto max-w-sm'>
+		<>
+			<section className='flex justify-center'>
 				{/* ito pinaka Card */}
-				<div className='w-96 md:min-w-[32rem] p-4 min-h-96 border border-gray-300 rounded-lg flex flex-col justify-between dark:bg-slate-100 dark:text-slate-600 shadow-lg dark:shadow-gray-700'>
+				<div className='w-72 sm:w-96 md:min-w-[32rem] p-4 min-h-96 flex flex-col justify-between dark:bg-dark100 dark:text-darkText100 shadow-lg dark:shadow-md dark:shadow-zinc-900 border border-gray-300 dark:border-zinc-950 rounded-lg'>
 					<section>
 						<h1 className='font-semibold text-xl uppercase'>
 							{todolistData?.title}
@@ -50,6 +50,6 @@ export default async function TodolistPage({ params }: TodolistProps) {
 				</div>
 			</section>
 			<ModalCreateList listId={todolistData?.id as string} />
-		</main>
+		</>
 	);
 }

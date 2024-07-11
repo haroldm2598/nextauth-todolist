@@ -9,7 +9,7 @@ export default function BtnCreate() {
 	};
 
 	return (
-		<Button onClick={showModalList}>
+		<Button className='dark:bg-black dark:text-white' onClick={showModalList}>
 			<SquarePen size='18' />
 		</Button>
 	);

@@ -28,12 +28,12 @@ export default async function DashboardPage() {
 	});
 
 	return (
-		<main>
+		<section>
 			<div className='flex flex-col md:flex-row flex-wrap justify-center gap-6'>
 				{users?.todolist.map((item) => (
 					<div
 						key={item.id}
-						className='flex flex-col justify-between p-4 mx-auto md:mx-0 w-72 md:w-96 max-w-sm min-h-64 dark:bg-main300 dark:text-main100 border border-gray-300 rounded-lg shadow-lg dark:shadow-gray-700'
+						className='flex flex-col justify-between p-4 mx-auto md:mx-0 w-72 md:w-96 max-w-sm min-h-64 dark:bg-dark100 dark:text-darkText100 border border-gray-300 dark:border-zinc-950 rounded-lg shadow-lg dark:shadow-md dark:shadow-zinc-900'
 					>
 						<section>
 							<h1 className='font-semibold text-lg uppercase'>{item.title}</h1>
@@ -44,7 +44,7 @@ export default async function DashboardPage() {
 											const maxLength = 80;
 
 											return (
-												<p key={lists.id} className='opacity-90 leading-4'>
+												<p key={lists.id} className='opacity-80 leading-4'>
 													{truncateStr?.length > maxLength
 														? `${truncateStr.substring(0, maxLength)} ...`
 														: truncateStr}
@@ -56,7 +56,7 @@ export default async function DashboardPage() {
 											const maxLength = 80;
 
 											return (
-												<p key={lists.id} className='opacity-90 leading-4'>
+												<p key={lists.id} className='opacity-80 leading-4'>
 													{truncateStr?.length > maxLength
 														? `${truncateStr.substring(0, maxLength)} ...`
 														: truncateStr}
@@ -78,6 +78,6 @@ export default async function DashboardPage() {
 			</div>
 
 			<CreateTodolist userId={users?.id as string} />
-		</main>
+		</section>
 	);
 }
